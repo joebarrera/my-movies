@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class App {
 
@@ -7,40 +9,44 @@ public class App {
 		String movieTitleUserInput = null;
 		String movieIdUserInput = null;
 
-		// do-while loop used to return the user back to the main menu if they've haven't chosen to exit the app
+		// Creates scanner object
+		Scanner input = new Scanner(System.in);
+
+		// creates tree set
+		Set<Movies> movieSet0 = new TreeSet<Movies>(new MovieNameComparator());
+
+		// do-while loop used to return the user back to the main menu if they've
+		// haven't chosen to exit the app
 		do {
 			// displays the main menu
 			MainMenu mainMenu = new MainMenu();
 
-			// Creates scanner object
-			Scanner input = new Scanner(System.in);
-
 			mainMenuUserInput = input.nextInt();
-			
-			if(mainMenuUserInput == 1) {
+
+			if (mainMenuUserInput == 1) {
+				// displays prompt for movie name
 				AddMovieMenu addMovieMenu0 = new AddMovieMenu();
-				
 				movieTitleUserInput = input.next();
-				
-				addMovieMenu0.setMovieName(movieTitleUserInput);
-				
-				//System.out.println(addMovieMenu0.getMovieName());
-				
-				addMovieMenu0.AddMovieId();
-				
+
+				Movies movie0 = new Movies();
+
+				movie0.setMovieName(movieTitleUserInput);
+
+				// displays prompt for movie id
+				AddMovieIdPrompt addMovieIdPrompt = new AddMovieIdPrompt();
 				movieIdUserInput = input.next();
-				
-				addMovieMenu0.setMovieId(movieIdUserInput);
-				
-				//System.out.println(addMovieMenu0.getMovieId());
-			}
-			else if(mainMenuUserInput == 2) {
-				// this is to be written
-			}
-			else if(mainMenuUserInput == 3) {
+
+				movie0.setMovieId(movieIdUserInput);
+
+				movieSet0.add(movie0);
+
+				System.out.println(movieSet0);
+			} else if (mainMenuUserInput == 2) {
+				// prints full list of movies you've added to your collection
+				System.out.println(movieSet0);
+			} else if (mainMenuUserInput == 3) {
 				System.out.println("Goodbye!");
-			}
-			else {
+			} else {
 				System.out.println("You did not enter a valid selection.");
 			}
 		} while (mainMenuUserInput != 3);
