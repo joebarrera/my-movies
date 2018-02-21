@@ -15,6 +15,6 @@ public class Movies {
 		this.movieId = movieId;
 	}
 	public String toString() {
-		return "Movie Name: " + this.movieName + " Movie ID: " + this.movieId;
+		return "(Movie Name: " + this.movieName + ", Movie ID: " + this.movieId + ")";
 	}
 }
